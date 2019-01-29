@@ -151,6 +151,22 @@ class Array2 {
      * Assignment 1 Question 1 Reverse the array
      */
     public void reverse() {
+
+        int temp;
+        int j = size-1;
+
+        for (int i = 0; i < size/2; i++) {
+
+            temp = arr[j];
+
+            arr[j] = arr[i];
+
+            arr[i] = temp;
+
+            j--;
+
+        }
+
     }
 
     /**
