@@ -13,7 +13,6 @@ class Array2 {
     }
 
     /**
-     *
      * @return the size of the Array
      */
     public int size() {
@@ -42,7 +41,6 @@ class Array2 {
     }
 
     /**
-     *
      * @return the content of the array as a String
      */
     public String toString() {
@@ -65,7 +63,7 @@ class Array2 {
      * @param i the index where to insert
      * @param x the element to insert
      */
-    public void insert(int i, int x)  {
+    public void insert(int i, int x) {
         //throw new UnsupportedOperationException();
         if (size() == max_elements) {
             throw new IndexOutOfBoundsException("Size of the array equals max");
@@ -80,9 +78,9 @@ class Array2 {
 
         }
 
-        if (i < size()-1) {
-            for (int j = arr.length-1; j == i; j--) {
-                arr[j] = arr[j+1];
+        if (i < size() - 1) {
+            for (int j = arr.length - 1; j == i; j--) {
+                arr[j] = arr[j + 1];
             }
             arr[i] = x;
         }
@@ -98,8 +96,8 @@ class Array2 {
 
         //throw new UnsupportedOperationException();
         boolean isSorted = true;
-        for (int i = 0; i < size -1; i++) {
-            if (arr[i] > arr[i+1]) {
+        for (int i = 0; i < size - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
                 isSorted = false;
             }
         }
@@ -153,9 +151,9 @@ class Array2 {
     public void reverse() {
 
         int temp;
-        int j = size-1;
+        int j = size - 1;
 
-        for (int i = 0; i < size/2; i++) {
+        for (int i = 0; i < size / 2; i++) {
 
             temp = arr[j];
 
@@ -175,10 +173,10 @@ class Array2 {
      * @param i the element to remove
      */
     public void remove(int i) {
-        for(int j=i; j<size;j++) {
+        for (int j = i; j < size; j++) {
             arr[j] = arr[j + 1];
         }
-        arr[size]=0;
+        arr[size] = 0;
     }
 
     /**
@@ -188,8 +186,8 @@ class Array2 {
      * @param i the element to remove
      */
     public void remove2(int i) {
-        arr[i]=arr[size-1];
-        arr[size-1]=0;
+        arr[i] = arr[size - 1];
+        arr[size - 1] = 0;
     }
 
     /**
@@ -200,7 +198,12 @@ class Array2 {
      * @return the index of the first occurrence
      */
     public int find(int x) {
-        throw new UnsupportedOperationException();
+        for (int i = 0; i < size - 1; i++) {
+            if (arr[i] == x) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -210,7 +213,27 @@ class Array2 {
      * @return The length of the palindrome
      */
     public int maxPalindrome() {
-        throw new UnsupportedOperationException();
+        int maxPalindrome = 0;
+        int tempSize = 0;
+        int[] tempArr = new int[max_elements];
+        int[] reverseArr = new int[max_elements];
+        for (int i = 0; i < size; i++) {
+            for (int j = i; j < size; j++) {
+                tempArr[i] = arr[i];
+                tempSize++;
+                for (int k = i; k <= j; k++) {
+                    arr[j] = reverseArr[k];
+                }
+                if (tempArr == reverseArr) {
+                    if (tempSize > maxPalindrome) {
+                        maxPalindrome = tempSize;
+                    }
+                }
+
+            }
+        }
+        return maxPalindrome;
+
     }
 
     /**
