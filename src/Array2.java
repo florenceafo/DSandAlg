@@ -175,7 +175,10 @@ class Array2 {
      * @param i the element to remove
      */
     public void remove(int i) {
-        throw new UnsupportedOperationException();
+        for(int j=i; j<size;j++) {
+            arr[j] = arr[j + 1];
+        }
+        arr[size]=0;
     }
 
     /**
@@ -185,7 +188,8 @@ class Array2 {
      * @param i the element to remove
      */
     public void remove2(int i) {
-        throw new UnsupportedOperationException();
+        arr[i]=arr[size-1];
+        arr[size-1]=0;
     }
 
     /**
