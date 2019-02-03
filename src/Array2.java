@@ -185,7 +185,7 @@ class Array2 {
      *
      * @param i the element to remove
      */
-    public void remove2(int i) {
+    public void remove2(int i) { // Removes an element at the index and replaces it with the last element
         arr[i] = arr[size - 1];
         arr[size - 1] = 0;
     }
@@ -217,11 +217,11 @@ class Array2 {
         int tempSize = 0;
         int[] tempArr = new int[max_elements];
         int[] reverseArr = new int[max_elements];
-        for (int i = 0; i < size; i++) {
-            for (int j = i; j < size; j++) {
+        for (int i = 0; i < size; i++) { // Loops to get the beginning of the string
+            for (int j = i; j < size; j++) { // Loops to get the end of the string
                 tempArr[i] = arr[i];
                 tempSize++;
-                for (int k = i; k <= j; k++) {
+                for (int k = i; k <= j; k++) { // Loops to check if it is a palindrome
                     arr[j] = reverseArr[k];
                 }
                 if (tempArr == reverseArr) {
