@@ -172,7 +172,7 @@ class Array2 {
      *
      * @param i the element to remove
      */
-    public void remove(int i) {
+    public void remove(int i) { // Removes an element at the index and shifts the rest one index lower
         for (int j = i; j < size; j++) {
             arr[j] = arr[j + 1];
         }
