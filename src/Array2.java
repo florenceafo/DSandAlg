@@ -172,11 +172,12 @@ class Array2 {
      *
      * @param i the element to remove
      */
-    public void remove(int i) { // Removes an element at the index and shifts the rest one index lower
+    public void remove(int i) {
         for (int j = i; j < size; j++) {
             arr[j] = arr[j + 1];
         }
         arr[size] = 0;
+        size--;
     }
 
     /**
@@ -185,9 +186,12 @@ class Array2 {
      *
      * @param i the element to remove
      */
-    public void remove2(int i) { // Removes an element at the index and replaces it with the last element
+    public void remove2(int i) {
         arr[i] = arr[size - 1];
         arr[size - 1] = 0;
+        size = size - 1;
+
+
     }
 
     /**
@@ -198,7 +202,7 @@ class Array2 {
      * @return the index of the first occurrence
      */
     public int find(int x) {
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             if (arr[i] == x) {
                 return i;
             }
@@ -213,28 +217,33 @@ class Array2 {
      * @return The length of the palindrome
      */
     public int maxPalindrome() {
-        int maxPalindrome = 0;
-        int tempSize = 0;
-        int[] tempArr = new int[max_elements];
-        int[] reverseArr = new int[max_elements];
-        for (int i = 0; i < size; i++) { // Loops to get the beginning of the string
-            for (int j = i; j < size; j++) { // Loops to get the end of the string
-                tempArr[i] = arr[i];
-                tempSize++;
-                for (int k = i; k <= j; k++) { // Loops to check if it is a palindrome
-                    arr[j] = reverseArr[k];
-                }
-                if (tempArr == reverseArr) {
-                    if (tempSize > maxPalindrome) {
-                        maxPalindrome = tempSize;
+        int maxPalindrome = 1;
+        if (size==0){
+            maxPalindrome = 0;
+        }
+        for (int i = 0; i < size; i++) {
+            int currentInt = arr[i];
+            for (int j = size - 1; j > i; j--) {
+                if (arr[j] == currentInt) {
+                    int length = palindrome(i, j);
+                    if (length > maxPalindrome) {
+                        maxPalindrome = length;
                     }
                 }
-
             }
         }
         return maxPalindrome;
-
     }
+    public int palindrome(int i, int j) {
+        int length = j - i + 1;
+        for (int k = 0; k < (j - i) / 2; k++) {
+            if (arr[i + k + 1] != arr[j - k - 1]) {
+                return 1;
+            }
+        }
+        return length;
+    }
+
 
     /**
      * Assignment 2 Question 3 returns the sum of the largest contiguous ascending
